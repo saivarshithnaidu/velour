@@ -45,7 +45,7 @@ export default function HeroSection() {
           style={{
             backgroundImage: `url('/images/hero/hero-main.jpg')`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center 20%',
+            backgroundPosition: 'center top',
           }}
         />
         <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10, 10, 10, 0.5)' }} />
