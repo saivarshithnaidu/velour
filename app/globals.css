@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════
+   VELOUR — Design System Tokens
+   ═══════════════════════════════════════ */
+
+:root {
+  --color-bg: #0A0A0A;
+  --color-bg-secondary: #2A2A2A;
+  --color-cream: #F5F0E8;
+  --color-gold: #C9A96E;
+  --color-white: #FFFFFF;
+  --color-dark: #0A0A0A;
+  --color-grey: #888888;
+  --color-light-grey: #D4D4D4;
+
+  --font-heading: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-body: var(--font-jost), "Jost", sans-serif;
+  --font-label: var(--font-barlow), "Barlow Condensed", sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --transition-smooth: 0.6s var(--ease-out-expo);
+}
+
+/* ═══════════════════════════════════════
+   Global Reset & Base
+   ═══════════════════════════════════════ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-cream);
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  background-color: var(--color-bg);
+  color: var(--color-cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════════
+   Selection
+   ═══════════════════════════════════════ */
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-dark);
+}
+
+::-moz-selection {
+  background-color: var(--color-gold);
+  color: var(--color-dark);
+}
+
+/* ═══════════════════════════════════════
+   Custom Scrollbar
+   ═══════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4b87a;
+}
+
+/* ═══════════════════════════════════════
+   Typography
+   ═══════════════════════════════════════ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-label {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+   Utility Classes
+   ═══════════════════════════════════════ */
+
+.text-cream { color: var(--color-cream); }
+.text-gold { color: var(--color-gold); }
+.text-dark { color: var(--color-dark); }
+.text-grey { color: var(--color-grey); }
+
+.bg-dark { background-color: var(--color-bg); }
+.bg-secondary { background-color: var(--color-bg-secondary); }
+.bg-cream { background-color: var(--color-cream); }
+.bg-gold { background-color: var(--color-gold); }
+
+/* ═══════════════════════════════════════
+   Image Reveal Animation
+   ═══════════════════════════════════════ */
+
+.image-reveal {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.2s var(--ease-out-expo);
+}
+
+.image-reveal.revealed {
+  clip-path: inset(0% 0 0 0);
+}
+
+/* ═══════════════════════════════════════
+   Marquee
+   ═══════════════════════════════════════ */
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* ═══════════════════════════════════════
+   Button Fill Animation
+   ═══════════════════════════════════════ */
+
+.btn-fill {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s var(--ease-out-expo);
+}
+
+.btn-fill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-cream);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out-expo);
+  z-index: -1;
+}
+
+.btn-fill:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-fill:hover {
+  color: var(--color-dark);
+}
+
+/* ═══════════════════════════════════════
+   No Scrollbar Utility
+   ═══════════════════════════════════════ */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ═══════════════════════════════════════
+   Cursor Blend
+   ═══════════════════════════════════════ */
+
+.cursor-none {
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  .cursor-none {
+    cursor: auto;
+  }
+}
