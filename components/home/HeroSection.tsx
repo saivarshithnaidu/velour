@@ -32,7 +32,7 @@ export default function HeroSection() {
       {/* Background Image with Parallax */}
       <motion.div className="absolute inset-0" style={{ y: imageY }}>
         <div
-          className="w-full h-[120%] bg-cover bg-center"
+          className="w-full h-[120%] bg-cover bg-top"
           style={{
             backgroundImage: `url('/images/hero/hero-main.jpg')`,
           }}
