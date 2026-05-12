@@ -15,10 +15,20 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section ref={ref} className="py-28 md:py-36 bg-[var(--color-cream)]">
+    <section ref={ref} className="section-padding bg-[var(--color-cream)]">
       <div className="max-w-2xl mx-auto px-6 text-center">
+        <motion.span
+          className="section-label block"
+          style={{ color: 'var(--color-gold)' }}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          — NEWSLETTER —
+        </motion.span>
         <motion.h2
-          className="font-heading text-[clamp(2.5rem,6vw,4.5rem)] text-[var(--color-dark)] font-light leading-tight"
+          className="font-heading text-[clamp(2.5rem,6vw,4.5rem)] font-light leading-tight"
+          style={{ color: 'var(--color-dark)' }}
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -26,7 +36,8 @@ export default function NewsletterSection() {
           JOIN THE SILENCE
         </motion.h2>
         <motion.p
-          className="font-body text-base text-[var(--color-dark)]/50 mt-4 mb-12"
+          className="font-body text-base mt-4 mb-12"
+          style={{ color: 'rgba(10, 10, 10, 0.5)', maxWidth: 'none', margin: '16px auto 48px' }}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -48,9 +59,36 @@ export default function NewsletterSection() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email"
               required
-              className="flex-1 bg-transparent border-b border-[var(--color-dark)]/20 py-3 font-body text-sm text-[var(--color-dark)] placeholder:text-[var(--color-dark)]/30 outline-none focus:border-[var(--color-gold)] transition-colors"
+              className="flex-1 font-body"
+              style={{
+                backgroundColor: 'transparent',
+                border: 'none',
+                borderBottom: '1px solid rgba(10, 10, 10, 0.2)',
+                padding: '12px 0',
+                fontSize: '16px',
+                fontWeight: 300,
+                color: 'var(--color-dark)',
+                outline: 'none',
+                borderRadius: 0,
+                WebkitAppearance: 'none',
+                transition: 'border-color 0.3s ease',
+              }}
+              onFocus={(e) => (e.currentTarget.style.borderBottomColor = 'var(--color-gold)')}
+              onBlur={(e) => (e.currentTarget.style.borderBottomColor = 'rgba(10, 10, 10, 0.2)')}
             />
-            <button type="submit" className="text-[var(--color-dark)] hover:text-[var(--color-gold)] transition-colors p-2">
+            <button
+              type="submit"
+              className="flex items-center justify-center hover:text-[var(--color-gold)] transition-colors"
+              style={{
+                color: 'var(--color-dark)',
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                minWidth: '44px',
+                minHeight: '44px',
+              }}
+              aria-label="Subscribe"
+            >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -59,7 +97,8 @@ export default function NewsletterSection() {
         ) : (
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
             <motion.div
-              className="w-12 h-12 rounded-full border-2 border-[var(--color-gold)] mx-auto flex items-center justify-center mb-4"
+              className="w-12 h-12 rounded-full border-2 mx-auto flex items-center justify-center mb-4"
+              style={{ borderColor: 'var(--color-gold)' }}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
@@ -68,7 +107,9 @@ export default function NewsletterSection() {
                 <path d="M5 13l4 4L19 7" />
               </svg>
             </motion.div>
-            <p className="font-heading text-2xl text-[var(--color-dark)]">You are in.</p>
+            <p className="font-heading text-2xl" style={{ color: 'var(--color-dark)', maxWidth: 'none', margin: 0 }}>
+              You are in.
+            </p>
           </motion.div>
         )}
       </div>

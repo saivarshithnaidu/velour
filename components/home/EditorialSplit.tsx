@@ -26,25 +26,38 @@ export default function EditorialSplit() {
             </div>
           ))}
           <motion.div
-            className="w-12 h-[1px] bg-[var(--color-gold)] mt-6"
+            style={{ width: '48px', height: '1px', backgroundColor: 'var(--color-gold)', marginTop: '24px', transformOrigin: 'left' }}
             initial={{ scaleX: 0 }}
             animate={inView ? { scaleX: 1 } : {}}
             transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            style={{ transformOrigin: 'left' }}
           />
         </div>
       </div>
       <div className="md:w-1/2 bg-[var(--color-cream)] flex flex-col items-center justify-center px-6 md:px-16 py-20 md:py-0 min-h-[50vh] md:min-h-screen">
         <motion.div
-          className="relative w-full max-w-sm aspect-[3/4] mb-10 overflow-hidden"
+          className="relative w-full max-w-sm overflow-hidden"
+          style={{ aspectRatio: '3/4', marginBottom: '40px' }}
           initial={{ clipPath: 'inset(100% 0 0 0)' }}
           animate={inView ? { clipPath: 'inset(0% 0 0 0)' } : {}}
           transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Image src="/images/editorial/editorial-1.jpg" alt="Editorial fashion" fill className="object-cover grayscale" />
+          <Image
+            src="/images/editorial/editorial-1.jpg"
+            alt="Editorial fashion"
+            fill
+            className="object-cover grayscale"
+            style={{ objectPosition: 'center top' }}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
         </motion.div>
         <motion.p
-          className="font-body text-base text-[var(--color-dark)]/70 max-w-sm text-center md:text-left leading-relaxed"
+          className="font-body text-base text-center md:text-left"
+          style={{
+            color: 'rgba(10, 10, 10, 0.7)',
+            maxWidth: '65ch',
+            lineHeight: 1.8,
+            letterSpacing: '0.01em',
+          }}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
@@ -53,7 +66,8 @@ export default function EditorialSplit() {
         </motion.p>
         <motion.a
           href="/collections"
-          className="font-label text-xs tracking-[0.2em] text-[var(--color-dark)] mt-8 inline-flex items-center gap-2 hover:text-[var(--color-gold)] transition-colors group"
+          className="font-label inline-flex items-center gap-2 hover:text-[var(--color-gold)] transition-colors group"
+          style={{ fontSize: '11px', letterSpacing: '0.2em', color: 'var(--color-dark)', marginTop: '32px' }}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 1 }}

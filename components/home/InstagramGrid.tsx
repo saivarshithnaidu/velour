@@ -11,14 +11,14 @@ export default function InstagramGrid() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-20 md:py-28 bg-[var(--color-bg)]" ref={ref}>
+    <section className="section-padding bg-[var(--color-bg)]" ref={ref}>
       <motion.div
         className="text-center mb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        <span className="font-label text-xs tracking-[0.4em] text-[var(--color-gold)]">AS SEEN ON</span>
+        <span className="section-label block">— AS SEEN ON —</span>
       </motion.div>
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
         {images.map((src, i) => (
@@ -31,8 +31,12 @@ export default function InstagramGrid() {
         animate={inView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.6 }}
       >
-        <p className="font-heading text-xl text-[var(--color-gold)] mb-2">@velour.official</p>
-        <p className="font-label text-[10px] tracking-[0.3em] text-[var(--color-cream)]/40">FOLLOW FOR DAILY INSPIRATION</p>
+        <p className="font-heading text-xl mb-2" style={{ color: 'var(--color-gold)', maxWidth: 'none', margin: '0 auto 8px' }}>
+          @velour.official
+        </p>
+        <p className="font-label" style={{ fontSize: '10px', letterSpacing: '0.3em', color: 'var(--color-text-muted)', maxWidth: 'none', margin: 0 }}>
+          FOLLOW FOR DAILY INSPIRATION
+        </p>
       </motion.div>
     </section>
   );
@@ -49,11 +53,19 @@ function GridImage({ src, index, inView }: { src: string; index: number; inView:
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <motion.div className="absolute inset-0" animate={{ scale: hovered ? 1.08 : 1 }} transition={{ duration: 0.5 }}>
-        <Image src={src} alt={`Instagram ${index + 1}`} fill className="object-cover" />
+      <motion.div className="absolute inset-0" animate={{ scale: hovered ? 1.04 : 1 }} transition={{ duration: 0.7 }}>
+        <Image
+          src={src}
+          alt={`Instagram ${index + 1}`}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 50vw, 33vw"
+          loading="lazy"
+        />
       </motion.div>
       <motion.div
-        className="absolute inset-0 bg-[var(--color-gold)]/40 flex items-center justify-center"
+        className="absolute inset-0 flex items-center justify-center"
+        style={{ backgroundColor: 'rgba(201, 169, 110, 0.4)' }}
         animate={{ opacity: hovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
